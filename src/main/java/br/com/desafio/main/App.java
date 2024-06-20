@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         EstoqueDAO estoqueDAO = new EstoqueDAO();
         PessoaDAO pessoaDAO = new PessoaDAO();
 
         try {
             // Adicionar produtos ao estoque
             estoqueDAO.adicionarProduto(new Produto("Arroz", 1000));
-            estoqueDAO.adicionarProduto(new Produto("Feij√£o", 500));
+            estoqueDAO.adicionarProduto(new Produto("Feij„o", 500));
 
             // Obter produtos do estoque
             List<Produto> produtos = estoqueDAO.obterEstoque();
@@ -25,17 +25,17 @@ public class App {
             }
 
             // Adicionar pessoas
-            pessoaDAO.adicionarPessoa(new Pessoa("Jo√£o", 30, "M", "Adulto"));
-            pessoaDAO.adicionarPessoa(new Pessoa("Maria", 5, "F", "Crian√ßa"));
+            pessoaDAO.adicionarPessoa(new Pessoa("Jo„o", 30, 'M', "2023-06-19")); // Ajustado para dataEntrada
+            pessoaDAO.adicionarPessoa(new Pessoa("Maria", 5, 'F', "2023-06-19"));
 
             // Obter pessoas
             List<Pessoa> pessoas = pessoaDAO.obterPessoas();
             for (Pessoa pessoa : pessoas) {
-                System.out.println("Pessoa: " + pessoa.getNome() + ", Idade: " + pessoa.getIdade() + ", Sexo: " + pessoa.getSexo() + ", Categoria: " + pessoa.getCategoriaEtaria());
+                System.out.println("Pessoa: " + pessoa.getNome() + ", Idade: " + pessoa.getIdade() + ", Sexo: " + pessoa.getSexo() + ", Data de Entrada: " + pessoa.getDataEntrada());
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao acessar o banco de dados: " + e.getMessage());
         }
     }
 }

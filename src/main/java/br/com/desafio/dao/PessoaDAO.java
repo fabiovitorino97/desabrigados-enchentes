@@ -1,44 +1,86 @@
 package br.com.desafio.dao;
 
 import br.com.desafio.model.Pessoa;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PessoaDAO {
-    private final String url = "jdbc:mysql://localhost:3306/desabrigados_enchentes";
-    private final String usuario = "teste";
-    private final String senha = "teste";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/desab_enchentes";
+    private final String jdbcUsername = "root";
+    private final String jdbcPassword = "123456";
+    private Connection jdbcConnection;
 
-    public void adicionarPessoa(Pessoa pessoa) throws SQLException {
-        try (Connection conexao = DriverManager.getConnection(url, usuario, senha)) {
-            String sql = "INSERT INTO pessoa (nome, idade, sexo, categoria_etaria) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-                stmt.setString(1, pessoa.getNome());
-                stmt.setInt(2, pessoa.getIdade());
-                stmt.setString(3, pessoa.getSexo());
-                stmt.setString(4, pessoa.getCategoriaEtaria());
-                stmt.executeUpdate();
-            }
+    protected void connect() throws Exception {
+        if (jdbcConnection == null || jdbcConnection.isClosed()) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         }
     }
 
-    public List<Pessoa> obterPessoas() throws SQLException {
-        List<Pessoa> pessoas = new ArrayList<>();
-        try (Connection conexao = DriverManager.getConnection(url, usuario, senha)) {
-            String sql = "SELECT * FROM pessoa";
-            try (Statement stmt = conexao.createStatement();
-                 ResultSet rs = stmt.executeQuery(sql)) {
-                while (rs.next()) {
-                    String nome = rs.getString("nome");
-                    int idade = rs.getInt("idade");
-                    String sexo = rs.getString("sexo");
-                    String categoriaEtaria = rs.getString("categoria_etaria");
-                    pessoas.add(new Pessoa(nome, idade, sexo, categoriaEtaria));
-                }
-            }
+    protected void disconnect() throws Exception {
+        if (jdbcConnection != null && !jdbcConnection.isClosed()) {
+            jdbcConnection.close();
         }
-        return pessoas;
+    }
+
+    public boolean adicionarPessoa(Pessoa pessoa) throws Exception {
+        String sql = "INSERT INTO usuarios (nome, idade, sexo, dataEntrada) VALUES (?, ?, ?, ?)";
+        connect();
+
+        boolean rowInserted;
+        try (PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
+            statement.setString(1, pessoa.getNome());
+            statement.setInt(2, pessoa.getIdade());
+            statement.setString(3, String.valueOf(pessoa.getSexo())); // Converte char para String
+            statement.setString(4, pessoa.getDataEntrada());
+            rowInserted = statement.executeUpdate() > 0;
+        }
+        disconnect();
+        return rowInserted;
+    }
+
+    public List<Pessoa> listarPessoas() throws Exception {
+        List<Pessoa> listaPessoas = new ArrayList<>();
+
+        String sql = "SELECT * FROM usuarios";
+
+        connect();
+
+        try (Statement statement = jdbcConnection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+            
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id_usuario");
+                String nome = resultSet.getString("nome");
+                int idade = resultSet.getInt("idade");
+                char sexo = resultSet.getString("sexo").charAt(0); // Converte String para char
+                String dataEntrada = resultSet.getString("dataEntrada");
+                
+                Pessoa pessoa = new Pessoa("Maria", 5, 'F', "2023-06-19");
+                pessoa.setId(id);
+                pessoa.setNome(nome);
+                pessoa.setIdade(idade);
+                pessoa.setSexo(sexo);
+                pessoa.setDataEntrada(dataEntrada);
+                
+                listaPessoas.add(pessoa);
+            }
+            
+        }
+
+        disconnect();
+
+        return listaPessoas;
+    }
+
+    // Adicionar métodos de atualização e exclusão de usuários, se necessário
+
+    public List<Pessoa> obterPessoas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

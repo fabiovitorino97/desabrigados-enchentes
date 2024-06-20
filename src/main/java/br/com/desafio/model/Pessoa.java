@@ -1,16 +1,22 @@
 package br.com.desafio.model;
 
 public class Pessoa {
+
+    public Pessoa(String maria, int par, char par1, String string) {
+    }
+    private int id;
     private String nome;
     private int idade;
-    private String sexo;
-    private String categoriaEtaria;
+    private char sexo;
+    private String dataEntrada;
 
-    public Pessoa(String nome, int idade, String sexo, String categoriaEtaria) {
-        this.nome = nome;
-        this.idade = idade;
-        this.sexo = sexo;
-        this.categoriaEtaria = categoriaEtaria;
+    // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -29,19 +35,20 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public String getSexo() {
+    public char getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(char sexo) {
         this.sexo = sexo;
     }
 
-    public String getCategoriaEtaria() {
-        return categoriaEtaria;
+    public String getDataEntrada() {
+        return dataEntrada;
     }
 
-    public void setCategoriaEtaria(String categoriaEtaria) {
-        this.categoriaEtaria = categoriaEtaria;
+    public void setDataEntrada(String dataEntrada) {
+        this.dataEntrada = dataEntrada;
     }
 }
+

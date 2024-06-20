@@ -1,5 +1,5 @@
-CREATE DATABASE desabrigados;
-USE desabrigados;
+CREATE DATABASE desab_enchentes;
+USE desab_enchentes;
 
 CREATE TABLE pessoa (
     id INT AUTO_INCREMENT PRIMARY KEY,

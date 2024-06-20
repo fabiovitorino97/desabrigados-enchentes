@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EstoqueDAO {
-    private final String url = "jdbc:mysql://localhost:3306/desabrigados_enchentes";
+    private final String url = "jdbc:mysql://localhost:3306/desab_enchentes";
     private final String usuario = "teste";
     private final String senha = "teste";
 
