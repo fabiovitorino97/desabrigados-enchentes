@@ -2,7 +2,6 @@ package br.com.desafio.dao;
 
 import br.com.desafio.model.Pessoa;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +16,7 @@ public class PessoaDAO {
     private final String jdbcUsername = "root";
     private final String jdbcPassword = "123456";
     private Connection jdbcConnection;
+    
 
     protected void connect() throws Exception {
         if (jdbcConnection == null || jdbcConnection.isClosed()) {
@@ -80,7 +80,7 @@ public class PessoaDAO {
         return listaPessoas;
     }
 
-    // Adicionar métodos de atualização e exclusão de usuários, se necessário
+    // Adicionar mï¿½todos de atualizaï¿½ï¿½o e exclusï¿½o de usuï¿½rios, se necessï¿½rio
 
     public List<Pessoa> obterPessoas() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
