@@ -1,8 +1,11 @@
 br\com\desafio\model\Produto.class
 br\com\desafio\model\Estoque.class
-br\com\desafio\model\Pessoa.class
-br\com\desafio\dao\EstoqueDAO.class
 br\com\desafio\dao\PessoaDAO.class
-br\com\desafio\util\PrevisaoEstoque.class
 br\com\desafio\util\CalculadoraNecessidades.class
 br\com\desafio\main\App.class
+repositories\impl\PessoaRepositoryImpl.class
+br\com\desafio\model\Pessoa.class
+br\com\desafio\config\DatabaseConfig.class
+br\com\desafio\dao\EstoqueDAO.class
+br\com\desafio\util\PrevisaoEstoque.class
+repositories\PessoaRepository.class

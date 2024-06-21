@@ -1,8 +1,10 @@
 package br.com.desafio.model;
 
+import java.time.LocalDate;
+
 public class Pessoa {
 
-    public Pessoa(String maria, int par, char par1, String string) {
+    public Pessoa(int par, String maria, int idade1, String string, int par2) {
     }
     private int id;
     private String nome;
@@ -49,6 +51,14 @@ public class Pessoa {
 
     public void setDataEntrada(String dataEntrada) {
         this.dataEntrada = dataEntrada;
+    }
+
+    public void setIdUsuario(int generatedId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int getIdUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

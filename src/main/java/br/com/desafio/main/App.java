@@ -4,6 +4,7 @@ import br.com.desafio.dao.EstoqueDAO;
 import br.com.desafio.dao.PessoaDAO;
 import br.com.desafio.model.Pessoa;
 import br.com.desafio.model.Produto;
+import br.com.desafio.config.DatabaseConfig;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -23,10 +24,11 @@ public class App {
             for (Produto produto : produtos) {
                 System.out.println("Produto: " + produto.getNomeProduto() + ", Quantidade: " + produto.getQuantidade());
             }
+            int idade = 0;
 
             // Adicionar pessoas
-            pessoaDAO.adicionarPessoa(new Pessoa("João", 30, 'M', "2023-06-19")); // Ajustado para dataEntrada
-            pessoaDAO.adicionarPessoa(new Pessoa("Maria", 5, 'F', "2023-06-19"));
+            pessoaDAO.adicionarPessoa(new Pessoa(30, "João", idade, "2023-06-19", 2023 - 6 - 19)); // Ajustado para dataEntrada
+            pessoaDAO.adicionarPessoa(new Pessoa(5, "Maria", idade, "2023-06-19", 2023 - 6 - 19));
 
             // Obter pessoas
             List<Pessoa> pessoas = pessoaDAO.obterPessoas();

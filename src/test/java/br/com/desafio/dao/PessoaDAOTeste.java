@@ -4,7 +4,6 @@ import br.com.desafio.model.Pessoa;
 import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,8 +13,8 @@ public class PessoaDAOTeste {
     private final PessoaDAO pessoaDAO = new PessoaDAO();
     
     @Test
-    public void testeAdicionarPessoa() throws SQLException, Exception {
-        Pessoa pessoa = new Pessoa("Maria", 5, 'F', "2023-06-19");
+    public void testeAdicionarPessoa(int idade) throws SQLException, Exception {
+        Pessoa pessoa = new Pessoa(5, "Maria", idade, "2023-06-19", 2023 - 6 - 19);
         pessoa.setNome("Teste");
         pessoa.setIdade(30);
         pessoa.setSexo('M');

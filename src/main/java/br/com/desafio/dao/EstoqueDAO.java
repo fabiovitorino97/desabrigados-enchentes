@@ -1,6 +1,7 @@
 package br.com.desafio.dao;
 
 import br.com.desafio.model.Produto;
+import br.com.desafio.config.DatabaseConfig;
 
 import java.sql.*;
 import java.util.ArrayList;

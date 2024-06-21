@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import br.com.desafio.config.DatabaseConfig;
+
 
 public class PessoaDAO {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/desab_enchentes";
@@ -61,7 +63,7 @@ public class PessoaDAO {
                 char sexo = resultSet.getString("sexo").charAt(0); // Converte String para char
                 String dataEntrada = resultSet.getString("dataEntrada");
                 
-                Pessoa pessoa = new Pessoa("Maria", 5, 'F', "2023-06-19");
+                Pessoa pessoa = new Pessoa(5, "Maria", idade, "F", 2023-06-19);
                 pessoa.setId(id);
                 pessoa.setNome(nome);
                 pessoa.setIdade(idade);

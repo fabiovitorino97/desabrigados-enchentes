@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Estoque {
-    private Map<String, Double> produtos;
+    private final Map<String, Double> produtos;
 
-    public Estoque() {
+    /**
+     *
+     */
+    public Estoque(double quantidade, double quantidade1, double quantidade2, double quantidade3) {
         produtos = new HashMap<>();
     }
 
